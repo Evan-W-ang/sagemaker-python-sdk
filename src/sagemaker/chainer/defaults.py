@@ -1,4 +1,4 @@
-# Copyright 2017-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
 # may not use this file except in compliance with the License. A copy of
@@ -12,7 +12,4 @@
 # language governing permissions and limitations under the License.
 from __future__ import absolute_import
 
-CONTENT_TYPE_JSON = 'application/json'
-CONTENT_TYPE_CSV = 'text/csv'
-CONTENT_TYPE_OCTET_STREAM = 'application/octet-stream'
-CONTENT_TYPE_NPY = 'application/x-npy'
+CHAINER_VERSION = '4.0.0'
