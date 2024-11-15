@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Installing Docker"
+
 sudo apt-get -y install ca-certificates curl gnupg
 
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -19,5 +21,27 @@ sudo apt-get install docker-ce-cli=$VERSION_STRING docker-compose-plugin -y
 # validate the Docker Client is able to access Docker Server at [unix:///docker/proxy.sock]
 docker version
 
+echo "Installing Local SageMaker Tarball"
 pip install "pydantic>=2.0.0"
 pip install sagemaker-2.232.4.dev0.tar.gz
+
+
+echo "Setting Up Read-Only SSH Access"
+eval "$(ssh-agent -s)"
+
+mkdir -p ~/.ssh/
+
+cp /home/sagemaker-user/bootstrap/adapter_deploy_key /home/sagemaker-user/.ssh/adapter_deploy_key
+chmod 600 ~/.ssh/adapter_deploy_key
+
+cp /home/sagemaker-user/bootstrap/launcher_deploy_key /home/sagemaker-user/.ssh/launcher_deploy_key 
+chmod 600 ~/.ssh/launcher_deploy_key
+
+cp /home/sagemaker-user/bootstrap/config /home/sagemaker-user/.ssh/config
+chmod 644 ~/.ssh/config
+
+ssh-add ~/.ssh/adapter_deploy_key
+ssh-add ~/.ssh/launcher_deploy_key
+
+
+
